@@ -14,3 +14,6 @@ class InventarioRegistro(BaseModel):
     cantidad: int
     medida: int | None = Field(None)
     unmed: str | None = Field(None, max_length=4)
+
+class RecuperarInventario(BaseModel):
+    items: list[InventarioModel]

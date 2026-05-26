@@ -28,5 +28,19 @@ def recuperarInventario():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al recuperar el Inventario: {e}")
 
-#def actualizarInventario(id:int, data:dict):
-    
+def actualizarInventario(id:int, data:dict):
+    try:
+        if not data:
+            raise HTTPException(status_code=404, detail="Datos incompletos")
+        data = jsonable_encoder(data)
+        res = _Table().update(data).eq("idinvt", id).execute()
+        return {"items": res.data[0] if res.data else None}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al actualizar el Inventario: {e}")
+
+def eliminarInventario(id:int):
+    try:
+        res = _Table().delete().eq("idinvt", id).execute()
+        return {"items": res.data[0] if res.data else None}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al eliminar el Inventario: {e}")
