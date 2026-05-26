@@ -49,3 +49,12 @@ def eliminarProducto(id:int):
         return {"items": res.data[0] if res.data else None}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al eliminar el Producto: {e}")
+    
+def buscarProducto(idprod: int):
+    try:
+        res = _Table().select("*").eq("idprod", idprod).execute()
+        if not res.data:
+            raise HTTPException(status_code=404, detail="No se encontro ningun producto")
+        return res.data[0] 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al buscar el Producto: {e}")
