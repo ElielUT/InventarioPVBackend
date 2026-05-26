@@ -17,3 +17,6 @@ class InventarioRegistro(BaseModel):
 
 class RecuperarInventario(BaseModel):
     items: list[InventarioModel]
+
+class RecuperarUnInventario(BaseModel):
+    item: InventarioModel

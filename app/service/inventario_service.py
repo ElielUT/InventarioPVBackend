@@ -44,3 +44,10 @@ def eliminarInventario(id:int):
         return {"items": res.data[0] if res.data else None}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al eliminar el Inventario: {e}")
+
+def buscarInventario(id:int):
+    try:
+        res = _Table().select("*").eq("idinvt", id).execute()
+        return {"items": res.data[0] if res.data else None}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al buscar el Inventario: {e}")
