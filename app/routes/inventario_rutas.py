@@ -1,6 +1,6 @@
 # pyrefly: ignore [missing-import]
 from fastapi import APIRouter
-from app.models.inventario_model import InventarioModel,InventarioRegistro, RecuperarInventario, RecuperarUnInventario
+from app.models.inventario_model import InventarioRegistro, RecuperarInventario, RecuperarUnInventario
 from app.service.inventario_service import agregarInventario,recuperarInventario, actualizarInventario, eliminarInventario, buscarInventario
 
 router = APIRouter(prefix="/inventario", tags=["Inventario"])
