@@ -7,10 +7,10 @@ from app.service.producto_service import agregarProducto,recuperarProducto, actu
 
 router = APIRouter(prefix="/producto", tags=["Producto"])
 
-@router.get("/", response_model=RecuperarProductos)
-def obtenerProductos():
-    res = recuperarProducto()
-    return {"items": res}
+@router.get("/{idinvt1}", response_model=RecuperarProductos)
+def obtenerProductos(idinvt1: int):
+    res = recuperarProducto(idinvt1)
+    return res
     
 @router.post("/", response_model=RegistroProducto)
 def postProducto(item: RegistroProducto):

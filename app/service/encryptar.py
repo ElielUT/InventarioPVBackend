@@ -1,5 +1,6 @@
 from app.core.config import config
 from cryptography.fernet import Fernet
+# pyrefly: ignore [missing-import]
 from fastapi import HTTPException
 
 KEY = config.encrypto_key

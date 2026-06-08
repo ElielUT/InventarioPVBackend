@@ -7,6 +7,7 @@ class InventarioModel(BaseModel):
     cantidad: int
     medida: int | None = Field(None)
     unmed: str | None = Field(None, max_length=4)
+    subcategoria: bool | None = Field(False)
 
 class InventarioRegistro(BaseModel):
     producto: str 
@@ -14,6 +15,7 @@ class InventarioRegistro(BaseModel):
     cantidad: int
     medida: int | None = Field(None)
     unmed: str | None = Field(None, max_length=4)
+    subcategoria: bool | None = Field(False)
 
 class RecuperarInventario(BaseModel):
     items: list[InventarioModel]

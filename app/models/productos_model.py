@@ -19,6 +19,9 @@ class RegistroProducto(BaseModel):
 
 class RecuperarProductos(BaseModel):
     items: list[ProductoModel]
+    producto: str
+    idinvt: int
 
 class RecuperarUnProducto(BaseModel):
     item: ProductoModel
+    producto: str

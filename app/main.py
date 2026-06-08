@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 # pyrefly: ignore [missing-import]
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import rutas, inventario_rutas, productos_rutas, camara_rutas, antenas_rutas, mantenimientos_rutas, proceso_rutas, utiliza_rutas
+from app.routes import rutas, inventario_rutas, productos_rutas, camara_rutas, antenas_rutas, mantenimientos_rutas, proceso_rutas, utiliza_rutas, password_rutas
 
 app = FastAPI()
 
@@ -22,6 +22,7 @@ app.include_router(antenas_rutas.router)
 app.include_router(mantenimientos_rutas.router)
 app.include_router(proceso_rutas.router)
 app.include_router(utiliza_rutas.router)
+app.include_router(password_rutas.router)
 
 #python -m venv venv
 # .\venv\Scripts\activate

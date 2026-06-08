@@ -13,6 +13,8 @@ def agregarInventario(data: dict):
     try:
         if not data:
             raise HTTPException(status_code=404, detail="Datos incompletos")
+        if data.get("subcategoria") is True:
+            data["cantidad"] = 0
         data = jsonable_encoder(data)
         res = _Table().insert(data).execute()
         return {"items": res.data[0] if res.data else None}
