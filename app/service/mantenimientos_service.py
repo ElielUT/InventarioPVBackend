@@ -15,7 +15,7 @@ def recuperarMantenimientos():
         if res.data:
             return res.data[0]
         else:
-            raise HTTPException(status_code=404, detail="Mantenimiento no encontrado")
+            return []
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al recuperar mantenimiento: {str(e)}")
 

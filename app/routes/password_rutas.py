@@ -22,16 +22,16 @@ def postPassword(item: PasswordsRegistro):
     return res.get("items")
 
 @router.put("/{id_pass}", response_model=PasswordsModel)
-def putPassword(id_pass: str, item: PasswordsRegistro):
+def putPassword(id_pass: int, item: PasswordsRegistro):
     res = actualizar_contraseña(id_pass, item.model_dump())
     return res.get("items")
 
 @router.delete("/{id_pass}", response_model=PasswordsModel)
-def deletePassword(id_pass: str):
+def deletePassword(id_pass: int):
     res = eliminar_contraseña(id_pass)
     return res.get("items")
 
 @router.get("/{id_pass}", response_model=RecuperarPasswordsUn)
-def getUnPassword(id_pass: str):
+def getUnPassword(id_pass: int):
     res = buscar_contraseña(id_pass)
     return {"item": res.get("items")}

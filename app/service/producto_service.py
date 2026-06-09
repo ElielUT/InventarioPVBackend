@@ -84,3 +84,19 @@ def buscarProducto(idprod: int):
         return res.data[0] 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al buscar el Producto: {e}")
+
+def buscarProductoCategoria(categoria: str):
+    try:
+        from app.service.inventario_service import buscarInventarioCategoria
+        inventario = buscarInventarioCategoria(categoria)
+        if not inventario:
+            return []
+        
+        # Guardar en la variable 'otro' todos los ids de inventario
+        otro = [item["idinvt"] for item in inventario]
+        
+        # Buscar todos los productos que coincidan con los ids en 'otro'
+        res = _Table().select("*").in_("idinvt1", otro).execute()
+        return res.data if res.data else []
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al buscar el Producto por Categoria: {e}")

@@ -19,7 +19,7 @@ def recuperar_contraseñas():
                     item["password"] = descifrar(item["password"])
             return res.data
         else:
-            raise HTTPException(status_code=404, detail="Contraseñas no encontradas")
+            return []
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al recuperar contraseñas: {str(e)}")
 
@@ -39,7 +39,7 @@ def agregar_contraseña(data: dict):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al agregar la contraseña: {str(e)}")
 
-def actualizar_contraseña(id_pass: str, data: dict):
+def actualizar_contraseña(id_pass: int, data: dict):
     try:
         if not data:
             raise HTTPException(status_code=400, detail="Datos incompletos")
@@ -56,7 +56,7 @@ def actualizar_contraseña(id_pass: str, data: dict):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al actualizar la contraseña: {str(e)}")
 
-def eliminar_contraseña(id_pass: str):
+def eliminar_contraseña(id_pass: int):
     try:
         res = _table().delete().eq("id_pass", id_pass).execute()
         item = res.data[0] if res.data else None
@@ -66,7 +66,7 @@ def eliminar_contraseña(id_pass: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al eliminar la contraseña: {str(e)}")
 
-def buscar_contraseña(id_pass: str):
+def buscar_contraseña(id_pass: int):
     try:
         res = _table().select("*").eq("id_pass", id_pass).execute()
         if not res.data:

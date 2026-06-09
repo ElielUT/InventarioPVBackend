@@ -1,22 +1,24 @@
 from pydantic import BaseModel
+from app.models.productos_model import ProductoModel
 
 class CamarasModel(BaseModel):
-    idprod1: int
+    idprod2: int
     idcamara: int
     nombre: str
-    direccionip: str
+    direccioip: str
     ubicacion: str
     conexion: str
 
 class RegistroCamara(BaseModel):
-    idprod1: int
+    idprod2: int
     nombre: str
-    direccionip: str
+    direccioip: str
     ubicacion: str
     conexion: str
 
 class RecuperarCamaras(BaseModel):
     items: list[CamarasModel]
+    productos: list[ProductoModel]
 
 class RecuperarCamara(BaseModel):
     item: CamarasModel

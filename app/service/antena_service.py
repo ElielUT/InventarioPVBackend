@@ -14,9 +14,9 @@ def recuperarAntenas():
     try:
         res = _Table().select('*').execute()
         if res.data:
-            return res.data[0]
+            return res.data
         else:
-            raise HTTPException(status_code=404, detail="Antena no encontrada")
+            return []
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al recuperar antena: {str(e)}")
 

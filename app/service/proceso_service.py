@@ -9,7 +9,7 @@ from app.service.mantenimientos_service import buscarMantenimiento
 
 def _Table():
     sb = get_supabase()
-    return sb.schema(config.supabase_schema).table(config.supabase_procesos)
+    return sb.schema(config.supabase_schema).table(config.supabase_proceso)
 
 def agregarProceso(data: dict):
     try:
@@ -25,11 +25,8 @@ def agregarProceso(data: dict):
 
 def recuperarProceso():
     try:
-        res = _Table().select('*').execute()
-        if res.data:
-            return res.data[0]
-        else:
-            raise HTTPException(status_code=404, detail="Proceso no encontrado")
+        res = _Table().select('*, mantenimientos(*)').execute()
+        return res.data if res.data else []
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al recuperar proceso: {str(e)}")
 

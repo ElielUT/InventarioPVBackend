@@ -3,9 +3,14 @@ from fastapi import APIRouter, Depends, HTTPException
 # pyrefly: ignore [missing-import]
 from app.models.productos_model import ProductoModel,RegistroProducto, RecuperarProductos, RecuperarUnProducto
 # pyrefly: ignore [missing-import]
-from app.service.producto_service import agregarProducto,recuperarProducto, actualizarProducto, eliminarProducto
+from app.service.producto_service import agregarProducto,recuperarProducto, actualizarProducto, eliminarProducto, buscarProductoCategoria
 
 router = APIRouter(prefix="/producto", tags=["Producto"])
+
+@router.get("/categoria/{categoria}", response_model=list[ProductoModel])
+def obtenerProductosPorCategoria(categoria: str):
+    res = buscarProductoCategoria(categoria)
+    return res
 
 @router.get("/{idinvt1}", response_model=RecuperarProductos)
 def obtenerProductos(idinvt1: int):

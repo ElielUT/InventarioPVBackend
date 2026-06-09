@@ -2,15 +2,17 @@ from pydantic import BaseModel
 from pydantic import Field
 
 class PasswordsModel(BaseModel):
-    id_pass: str = Field(None)
+    id_pass: int = Field(None)
     password: str = Field(None)
     nombre: str = Field(None)
     categoria: str = Field(None)
+    usuario: str = Field(None)
     
 class PasswordsRegistro(BaseModel):
     password: str = Field(None)
     nombre: str = Field(None)
     categoria: str = Field(None)
+    usuario: str = Field(None)
 
 class RecuperarPasswords(BaseModel):
     items: list[PasswordsModel]
