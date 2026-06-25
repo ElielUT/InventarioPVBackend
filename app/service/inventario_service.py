@@ -62,4 +62,12 @@ def buscarInventarioCategoria(categoria: str):
         return res.data
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al buscar el Inventario por categoria: {e}")
-    
+
+def recuperarInventarioNomID():
+    try:
+        res = _Table().select("idinvt, producto").neq("subcategoria", True).execute()
+        if res.data is None:
+            raise HTTPException(status_code=404, detail="No se encontro inventario")
+        return res.data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al recuperar el Inventario por nombre e ID: {e}")

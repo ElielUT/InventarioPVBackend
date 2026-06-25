@@ -8,19 +8,19 @@ router = APIRouter(prefix="/utiliza", tags=["Utiliza"])
 @router.get("/", response_model=RecuperarUtiliza)
 def getUtiliza():
     res = recuperarUtiliza()
-    return {"items": res}
+    return res
 
 @router.post("/", response_model=UtilizaRegistro)
 def postUtiliza(item: UtilizaRegistro):
     res = agregarUtiliza(item.model_dump())
-    return res.get("items")
+    return res
 
 @router.put("/{idutiliza}", response_model=UtilizaRegistro)
 def putUtiliza(idutiliza: int, item: UtilizaRegistro):
     res = actualizarUtiliza(idutiliza, item.model_dump())
-    return res.get("items")
+    return res
 
 @router.delete("/{idutiliza}", response_model=UtilizaRegistro)
 def deleteUtiliza(idutiliza: int):
     res = eliminarUtiliza(idutiliza)
-    return res.get("items")
+    return res

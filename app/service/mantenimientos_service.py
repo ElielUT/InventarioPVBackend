@@ -12,10 +12,7 @@ def _Table():
 def recuperarMantenimientos():
     try:
         res = _Table().select('*').execute()
-        if res.data:
-            return res.data[0]
-        else:
-            return []
+        return res.data if res.data else []
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al recuperar mantenimiento: {str(e)}")
 

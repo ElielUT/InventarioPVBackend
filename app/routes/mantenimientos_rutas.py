@@ -14,14 +14,14 @@ def getMantenimientos():
 @router.post("/", response_model=MantenimientosRegistro)
 def postMantenimientos(item: MantenimientosRegistro):
     res = agregarMantenimiento(item.model_dump())
-    return res.get("items")
+    return res
 
 @router.put("/{idmant}", response_model=MantenimientosRegistro)
 def putMantenimientos(idmant: int, item: MantenimientosRegistro):
     res = actualizarMantenimiento(idmant, item.model_dump())
-    return res.get("items")
+    return res
 
 @router.delete("/{idmant}", response_model=MantenimientosRegistro)
 def deleteMantenimientos(idmant: int):
     res = eliminarMantenimiento(idmant)
-    return res.get("items")
+    return res
