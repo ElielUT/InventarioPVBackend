@@ -21,6 +21,7 @@ class Config(BaseSettings):
     supabase_proceso: str = Field(..., alias="SUPABASE_PROCESO")
     supabase_utiliza: str = Field(..., alias="SUPABASE_UTILIZA")
     supabase_passwords: str = Field(..., alias="SUPABASE_PASSWORDS")
+    supabase_documentos: str = Field(..., alias="SUPABASE_DOCUMENTOS")
 
     encrypto_key: str = Field(..., alias="ENCRYPTION_KEY")
 
